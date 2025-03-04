@@ -1,5 +1,5 @@
 <?php
-session_start(); // Asegúrate de iniciar la sesión
+session_start(); // Inicia la sesión
 
 require('conex_bd.php');
 

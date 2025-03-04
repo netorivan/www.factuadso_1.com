@@ -502,6 +502,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          de la pantalla y el otro lado esta el enlace de actualizacion  -->
                             <div class="col-sm-6">
                                 <h1 class="m-0"> Administracion de Usuarios</h1>
+                                <a href="#registro">Resgistrar nuevo usuario</a>
                             </div><!-- /.col -->
                             <!-- este es el otro lado de la divicion anterior de columnas la parte derecha -->
                             <div class="col-sm-6">
@@ -562,7 +563,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                 <!-- Formulario para Agregar Nuevo Usuario -->
-                <h3>Agregar Nuevo Usuario</h3>
+                <h3 id="registro">Agregar Nuevo Usuario</h3>
                 <form action="controllers/controllers_registro.php" method="post">
                     <div class="input-group mb-3">
                         <input type="text" name="nombre" class="form-control" placeholder="Nombre Completo" require>

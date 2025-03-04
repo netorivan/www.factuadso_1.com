@@ -3,7 +3,7 @@ require('conex_bd.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id_user'];
+    $id = $_POST['id'];
 
     $query = "DELETE FROM usuarios WHERE id_user = :id";
     $stmt = $conn->prepare($query);

@@ -75,6 +75,10 @@ if (isset($_SESSION['user_id'])) {
     </nav>
     <!-- finish nav -->
 
+    <h1>ESTA ES LA VENTANA PARA FACTURAR EN LA PANADERIA </h1>
+    <h2>Y SE INGRESA DIRECTAMENTE CON EL ROL DE OPERADOR </h2>
+
+
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
