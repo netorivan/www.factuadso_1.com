@@ -56,9 +56,9 @@
             <div class="card-body">
                 <p class="login-box-msg">Digita aqui tus datos para iniciar sesion</p>
 
-                <form action="controllers/controll_ingreso.php" method="post">
+                <form id="loginForm" action="controllers/API_login.php" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Correo">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Correo">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password_user" class="form-control" placeholder="Contraseña">
+                        <input type="password" id="password" name="password_user" class="form-control" placeholder="Contraseña">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -84,8 +84,9 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                            <button id="btnLogin" type="submit" class="btn btn-primary btn-block">Ingresar</button>
                         </div>
+
                         <!-- /.col -->
                     </div>
                 </form>
@@ -130,6 +131,7 @@
             });
         }
     </script>
+    <script src="controllers/login.js"></script>
 
 </body>
 

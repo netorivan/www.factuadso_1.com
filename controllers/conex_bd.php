@@ -16,8 +16,8 @@ try {
     // Configura el modo de error de PDO para lanzar excepciones
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Manejo de errores
 
-    // Mensaje de éxito
-    echo "Conexión exitosa";
+    // Configura el modo de recuperación de PDO para que devuelva un array asociativo
+    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); // Modo de recuperación
 } catch (PDOException $e) {
     // Captura cualquier excepción y muestra el mensaje de error
     echo "Error de conexión: " . $e->getMessage();

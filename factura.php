@@ -1,91 +1,99 @@
 <?php
-// inicio de sesion
+// Inicio de sesión
 session_start();
-if (isset($_SESSION['user_id'])) {
-    echo 'bienvenido, ' . $_SESSION['username'];
-} else {
-    // echo 'no hay sesion iniciada';
-    header("Location:controllers/controll_logout.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: controllers/controll_logout.php");
+    exit();
 }
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>factura</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="template/AdminLTE-3.2.0/ plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
+    <title>Punto de Venta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="template/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="template/AdminLTE-3.2.0/dist/css/adminlte.min.css">
+    <style>
+        .producto-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .producto-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
-<body>
-    <!--navbar  -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <!-- <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li> -->
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index.php" class="nav-link">Inicio</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <a href="controllers/controll_logout.php" class="btn btn-danger">Cerrar sesión</a>
+            </ul>
+        </nav>
 
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="index.php" class="nav-link">Home</a>
-            </li>
-        </ul>
-        <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
-            <a href="controllers/controll_logout.php" class="btn btn-danger">cerrar sesiòn</a>
-            <li class="nav-item dropdown">
-
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-bell"></i>
-                    <span class="badge badge-warning navbar-badge"></span>
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-header"></span>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i>
-                        <span class="float-right text-muted text-sm"></span>
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        <!-- Contenido principal -->
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="container-fluid">
+                    <h1 class="text-center">Punto de Venta</h1>
+                    <div class="row">
+                        <!-- Productos -->
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <input type="text" class="form-control" placeholder="Buscar producto...">
+                                </div>
+                                <div class="card-body d-flex flex-wrap justify-content-start" id="productos-container">
+                                    <!-- Productos simulados -->
+                                    <div class="card producto-card m-2" style="width: 150px;">
+                                        <img src="img/pan.jpg" class="card-img-top" alt="Pan">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Pan</h5>
+                                            <p class="card-text">$1.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="card producto-card m-2" style="width: 150px;">
+                                        <img src="img/pastel.jpg" class="card-img-top" alt="Pastel">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Pastel</h5>
+                                            <p class="card-text">$2.50</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carrito -->
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">Resumen de Compra</div>
+                                <div class="card-body" id="carrito-container">
+                                    <!-- Carrito vacío -->
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-success btn-block">Pagar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                    <i class="fas fa-expand-arrows-alt"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    <i class="fas fa-th-large"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <!-- finish nav -->
-
-    <h1>ESTA ES LA VENTANA PARA FACTURAR EN LA PANADERIA </h1>
-    <h2>Y SE INGRESA DIRECTAMENTE CON EL ROL DE OPERADOR </h2>
-
-
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
+            </section>
+        </div>
+    </div>
+    <!-- Scripts -->
     <script src="template/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
     <script src="template/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
     <script src="template/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
 </body>
 

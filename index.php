@@ -3,15 +3,15 @@
 
 
 <?php
+
 // inicio de sesion
 session_start();
-if (isset($_SESSION['user_id'])) {
-    echo 'bienvenido, ' . $_SESSION['username'];
-} else {
-    // echo 'no hay sesion iniciada';
+if (!isset($_SESSION['user_id'])) {
     header("Location:controllers/controll_logout.php");
 }
-// use PSpell\Config;
+
+
+
 
 @include('controllers/conex_bd.php');
 // consulta y se guarda en la variable consulta
@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mundo del Pandebono | Mejorado</title>
+    <title>Mundo del Pandebono | principal</title>
     <!--  estilos de Font Awesome alojada en el CDN de Cloudflare. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -180,7 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <!-- cerrar sesion -->
-                    <a href="controllers/controll_logout.php" class="btn btn-danger">cerrar sesiòn</a>
+                    <a href="controllers/controll_logout.php" class="btn btn-danger">cerrar sesión</a>
 
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
@@ -223,7 +223,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Brand Logo -->
             <a href="index.php" class="brand-link">
                 <img src="template/AdminLTE-3.2.0/dist/img/logo_freepick.jpg" alt="pandebono_logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">(¡bienvendo!)</span>
+                <span class="brand-text font-weight-light">¡BIENVENIDO! </span>
+
+                <p><?php echo htmlspecialchars($_SESSION['username'] ?? 'Usuario'); ?></p>
+
+
             </a>
 
             <!-- Sidebar -->
